@@ -11,7 +11,6 @@ def send_email(contact):
 
 
 def process_message(ch, method, properties, body):
-    """Обробка повідомлення з RabbitMQ."""
     contact_id = body.decode('utf-8')
     print(f"[Consumer] Received contact ID: {contact_id}")
 
@@ -29,7 +28,6 @@ def process_message(ch, method, properties, body):
 
 
 def start_consumer():
-    """Запускає споживача, який очікує повідомлення."""
     connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
     channel = connection.channel()
     channel.queue_declare(queue=RABBITMQ_QUEUE)
